@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#15181b"/>
+  <path d="M12 46h40" stroke="#3a4148" stroke-width="2"/>
+  <circle cx="14" cy="46" r="4" fill="#15181b" stroke="#f5f3ee" stroke-width="2.5"/>
+  <circle cx="50" cy="46" r="4" fill="#ff8a4c"/>
+  <text x="32" y="34" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="24" font-weight="600" fill="#f5f3ee">IP</text>
+</svg>
