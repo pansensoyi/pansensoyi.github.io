@@ -11,7 +11,15 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const OWNER = 'pansensoyi';
+// A string, or { repo, name?, description? } to override what the repo's own
+// metadata says (e.g. a fork whose package.json still carries the upstream name).
 const REPOS = [
+  {
+    repo: 'mira-zampen',
+    name: 'mira-zampen',
+    description:
+      'Mira ZamPen: a civic budget and crime transparency portal for Zamboanga Peninsula (Region IX). FY 2027 NEP vs House bill by province and district, likely insertions, enacted budgets 2020–2026 and crime rates per 100k. Built on BetterGov.ph.',
+  },
   'adobe-analytics-toolkit',
   'braze-toolkit',
   'adtech-kit',
@@ -73,7 +81,10 @@ const endAt = html.indexOf(END);
 if (startAt === -1 || endAt === -1) throw new Error('Project markers not found in index.html');
 
 const startLineEnd = html.indexOf('\n', startAt);
-const projects = REPOS.map(readProject);
+const projects = REPOS.map((entry) => {
+  const { repo, ...override } = typeof entry === 'string' ? { repo: entry } : entry;
+  return { ...readProject(repo), ...override };
+});
 const next =
   html.slice(0, startLineEnd + 1) +
   projects.map(card).join('\n') +
